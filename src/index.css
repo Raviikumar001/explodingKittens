@@ -13,4 +13,8 @@
     .home-body{
         @apply  h-screen max-h-full bg-[#0f0f0f] font-inter
     }
+
+    .app-bg{
+        @apply bg-gradient-to-br from-red-500 to-indigo-600
+    }
 }

@@ -1,18 +1,82 @@
-import { useState, useCallback } from "react";
+import React, { useState, useCallback} from "react";
+
+import { useDispatch, useSelector } from "react-redux";
+import { loginStart, loginSuccess,removeError, registerFailure, registerStart, registerSuccess} from "../../reducers/authReducer";
+import { useNavigate } from "react-router-dom";
+import { RootState } from "../../Types";
+import axios, { AxiosError } from "axios";
 
 type Varient = "LOGIN" | "REGISTER";
 
-const AccountForm = () => {
+const AccountForm: React.FC = () => {
   const [Varient, setVarient] = useState<Varient>("LOGIN");
-  const [isLoading, setIsLoading] = useState(false);
+  const [name, setName] = useState<string>("");
+  const [userName, setUserName] = useState<string>("");
+  let navigate = useNavigate();
+
+  const dispatch = useDispatch(); 
+  const { isLoading, error } = useSelector((state: RootState) => state.auth);
+  // const [isLoading, setIsLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const authApi = Varient === "LOGIN" ?"/auth/v1/login" : "/auth/v1/register"  ;
+    const dispatchAction = Varient === "LOGIN" ? loginStart : registerStart;
+
+    try {
+      dispatch(dispatchAction())
+      console.log(Varient);
+      console.log(authApi , "auth")
+      const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}${authApi}`,{
+        name : name,
+        userName: userName
+      })
+
+      console.log(response);
+      if(response)
+      {   
+         if (Varient === 'REGISTER'){
+           const user = await JSON.parse(response.data?.user);
+          dispatch(registerSuccess(user))
+          navigate('/app');
+         }else if(Varient == 'LOGIN')
+         {
+          const user = await JSON.parse(response.data?.user);
+          dispatch(loginSuccess(user))
+          navigate('/app');
+         }
+
+      }
+    } catch (error: unknown) {
+      const err = error as AxiosError<{ msg: string }>;
+      console.log(error)
+      if (err.response) { 
+        if (Varient === 'REGISTER'){
+          const message = err.response?.data?.msg;
+         dispatch(registerFailure(message))
+        }else if(Varient == 'LOGIN')
+        {
+          const message = err.response?.data?.msg;
+         dispatch(registerFailure(message))
+        }
+    
+      }
+    }
+  };
 
   const toggleVarient = useCallback(() => {
     if (Varient === "LOGIN") {
+      setUserName('')
       setVarient("REGISTER");
+      dispatch(removeError())
     } else {
+      setName('')
+      setUserName('')
       setVarient("LOGIN");
     }
   }, [Varient]);
+
+ 
 
   return (
     <div>
@@ -33,10 +97,7 @@ const AccountForm = () => {
             sm:rounded-lg
             sm:px-10"
         >
-          <form
-            className="space-y-6"
-            // onSubmit={handleSubmit(onSubmit)}
-          >
+          <form className="space-y-2" onSubmit={(e) => handleSubmit(e)}>
             {Varient == "REGISTER" && (
               <>
                 <label
@@ -50,11 +111,15 @@ const AccountForm = () => {
                 >
                   Name
                 </label>
-                <input className="form-input
+                <input
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="form-input
                     block
                     w-full
                     rounded-md
                     border-0
+                    p-2
                     py-1.5
                     text-gray-900
                     shadow-sm
@@ -66,7 +131,8 @@ const AccountForm = () => {
                     focus:ring-inset
                    
                     sm:text-sm
-                    sm:leading-6" />
+                    sm:leading-6"
+                />
               </>
             )}
 
@@ -81,11 +147,15 @@ const AccountForm = () => {
             >
               Username
             </label>
-            <input className="form-input
+            <input
+              value={userName}
+              onChange={(e) => setUserName(e.target.value)}
+              className="form-input
                     block
                     w-full
                     rounded-md
                     border-0
+                    p-2
                     py-1.5
                     text-gray-900
                     shadow-sm
@@ -97,8 +167,9 @@ const AccountForm = () => {
                     focus:ring-inset
                    
                     sm:text-sm
-                    sm:leading-6" />
-
+                    sm:leading-6"
+            />
+            {error}
             <button
               className=" flex
                     justify-center
@@ -111,7 +182,9 @@ const AccountForm = () => {
                     font-semibold
                     focus-visible:outline
                     focus-visible:outline-2
-                    focus-visible:outline-offset-2"
+                    focus-visible:outline-offset-2
+                    disabled:bg-gray-300
+                    "
               disabled={isLoading}
               // fullwidth
               type="submit"

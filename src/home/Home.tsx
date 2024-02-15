@@ -1,12 +1,19 @@
+
 import AccountForm from "../components/home/_AccountForm"
 
 const Home = () => {
+
+
+   
   return (
     <div className="home-body font-inter">
 
         <div>
             <p className="text-center text-white 
-            text-3xl font-medium pt-10"
+            text-3xl font-medium pt-10
+            
+            
+            "
             >EXPLODING KITTENS🔥</p>
         </div>
         
