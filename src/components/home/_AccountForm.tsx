@@ -36,13 +36,15 @@ const AccountForm: React.FC = () => {
       if(response)
       {   
          if (Varient === 'REGISTER'){
-           const user = await JSON.parse(response.data?.user);
-          dispatch(registerSuccess(user))
+          const user = await JSON.parse(response.data?.user);
+          const token = response.data?.token;
+          dispatch(registerSuccess({user,token}))
           navigate('/app');
          }else if(Varient == 'LOGIN')
          {
           const user = await JSON.parse(response.data?.user);
-          dispatch(loginSuccess(user))
+          const token = response.data?.token;
+          dispatch(loginSuccess({user,token}))
           navigate('/app');
          }
 

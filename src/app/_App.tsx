@@ -1,11 +1,12 @@
 
 import {  useSelector } from "react-redux";
 import { RootState } from "../Types";
-
+import { Link } from "react-router-dom";
 
 const MainApp = () => {
 
-  const user = useSelector( (state: RootState) => state.auth.user);
+  const user= useSelector( (state: RootState) => state.auth.user);
+  // const token  = useSelector( (state: RootState) => state.auth.token);
   console.log(user)
 
   return (
@@ -27,6 +28,10 @@ const MainApp = () => {
             sm:rounded-lg
             sm:px-10"
         >
+          <div>
+            <p className="text-center text-xl p-2">Hello! {" "} {user?.name}  🐱</p>
+          </div>
+
           <button
             className="text-center w-full
           border
@@ -39,7 +44,7 @@ const MainApp = () => {
           text-2xl
           "
           >
-            Play Game
+          <Link to="/game">Play Game </Link>  
           </button>
           <button
             className="text-center w-full

@@ -2,12 +2,17 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AuthState , User} from "../Types";
 
+
 export const initialState: AuthState ={
     user: null,
     isLoading: false,
-    error: null
+    error: null,
+    token: null
 }
-
+type Payload = {
+    user :User,
+    token: string
+}
 
 const authSlice = createSlice({
     name: 'auth',
@@ -21,17 +26,20 @@ const authSlice = createSlice({
         state.isLoading = true;
         state.error = null
       },
-      registerSuccess(state,action: PayloadAction<User>) {
+      registerSuccess(state,action: PayloadAction<Payload>) {
         state.isLoading = false;
-        state.user = action.payload
-        localStorage.setItem('user', JSON.stringify(action.payload)); 
+        state.user = action.payload.user
+        state.token = action.payload.token
+        localStorage.setItem('user', JSON.stringify(action.payload.user)); 
+        localStorage.setItem('token', JSON.stringify(action.payload.token)); 
       },
 
-      loginSuccess(state, action: PayloadAction<User>) {
+      loginSuccess(state, action: PayloadAction<Payload>) {
         state.isLoading = false;
-        state.user = action.payload;
-
-        localStorage.setItem('user', JSON.stringify(action.payload)); 
+        state.user = action.payload.user
+        state.token = action.payload.token
+        localStorage.setItem('user', JSON.stringify(action.payload.user)); 
+        localStorage.setItem('token', JSON.stringify(action.payload.token)); 
       },
       registerFailure(state, action: PayloadAction<string>) {
         state.isLoading = false;
