@@ -52,7 +52,7 @@ const WonPopup: React.FC<Close> = ({ onClose }) => {
   return (
     <div id="popup" className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 ">
       <div className="bg-white p-8 rounded-lg shadow-md">
-        <img src="/public/kitten1.webp" alt="exploding cat" className="rounded-md" height={200} width={200} />
+        <img src="/kitten1.webp" alt="exploding cat" className="rounded-md" height={200} width={200} />
         <p className="text-lg font-semibold mb-4">YAAY! GAME WIN </p>
         <p className="mb-4">Let everything happen to you Beauty and terror Just keep going No feeling is final</p>
         <button
