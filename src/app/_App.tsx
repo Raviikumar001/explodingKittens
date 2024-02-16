@@ -1,20 +1,17 @@
-
-import {  useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { RootState } from "../Types";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 const MainApp = () => {
-
-  const user= useSelector( (state: RootState) => state.auth.user);
+  const user = useSelector((state: RootState) => state.auth.user);
   // const token  = useSelector( (state: RootState) => state.auth.token);
-  console.log(user)
-  let navigate  = useNavigate();
-  const QuitGame = ()=>{
-    localStorage.removeItem('user');
-    localStorage.removeItem('token')
+  console.log(user);
+  let navigate = useNavigate();
+  const QuitGame = () => {
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
     navigate("/");
-    
-  }
+  };
 
   return (
     <div className="h-screen app-bg ">
@@ -36,7 +33,7 @@ const MainApp = () => {
             sm:px-10"
         >
           <div>
-            <p className="text-center text-xl p-2">Hello! {" "} {user?.name}  🐱</p>
+            <p className="text-center text-xl p-2">Hello! {user?.name} 🐱</p>
           </div>
 
           <button
@@ -51,7 +48,7 @@ const MainApp = () => {
           text-2xl
           "
           >
-          <Link to="/game">Play Game </Link>  
+            <Link to="/game">Play Game </Link>
           </button>
           <button
             className="text-center w-full
@@ -65,10 +62,7 @@ const MainApp = () => {
           text-2xl
           "
           >
-            <Link to="/app/leaderboard" >
-            Leader Board
-            
-            </Link>
+            <Link to="/app/leaderboard">Leader Board</Link>
           </button>
           <button
             className="text-center w-full
@@ -82,11 +76,7 @@ const MainApp = () => {
           text-2xl
           "
           >
-           
-           <Link to="/app/instructons">
-           Instructions For Game
-             </Link>
-           
+            <Link to="/app/instructons">Instructions For Game</Link>
           </button>
           <button
             className="text-center w-full
@@ -99,7 +89,7 @@ const MainApp = () => {
           text-white
           text-2xl
           "
-          onClick={QuitGame}
+            onClick={QuitGame}
           >
             Quit Game
           </button>
