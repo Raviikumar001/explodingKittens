@@ -34,7 +34,7 @@ const WonPopup: React.FC<Close> = ({ onClose }) => {
           },
         }
       );
-
+        console.log(response)
     } catch (error: unknown) {
       const err = error as AxiosError<{ msg: string }>;
       console.log(err);
