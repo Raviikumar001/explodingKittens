@@ -1,10 +1,22 @@
 
 import AccountForm from "../components/home/_AccountForm"
-
+// import { useSelector } from "react-redux";
+// import { useNavigate } from "react-router-dom";
+// import { RootState } from "../Types";
+// import { useEffect } from "react";
 const Home = () => {
 
-
+  // const user = useSelector((state: RootState) => state.auth.user);
    
+  // let navigate = useNavigate();
+
+  // useEffect(()=> {
+  //   if(user?.name)
+  //   {
+  //     navigate('/app');
+
+  //   }
+  // }, [])
   return (
     <div className="home-body font-inter">
 

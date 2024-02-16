@@ -15,7 +15,7 @@ const AccountForm: React.FC = () => {
   let navigate = useNavigate();
 
   const dispatch = useDispatch(); 
-  const { isLoading, error } = useSelector((state: RootState) => state.auth);
+  const { error } = useSelector((state: RootState) => state.auth);
   // const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -115,6 +115,7 @@ const AccountForm: React.FC = () => {
                 </label>
                 <input
                   value={name}
+                  placeholder="Name"
                   onChange={(e) => setName(e.target.value)}
                   className="form-input
                     block
@@ -151,6 +152,7 @@ const AccountForm: React.FC = () => {
             </label>
             <input
               value={userName}
+              placeholder="username eg: neha"
               onChange={(e) => setUserName(e.target.value)}
               className="form-input
                     block
@@ -188,7 +190,7 @@ const AccountForm: React.FC = () => {
                     focus-visible:outline-offset-2
                     disabled:bg-gray-300
                     "
-              disabled={isLoading}
+              
               // fullwidth
               type="submit"
             >
