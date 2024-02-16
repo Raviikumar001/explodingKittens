@@ -5,6 +5,7 @@ import { RootState } from "../Types";
 import { shuffleCards, flipCard, removeCard } from "../reducers/gameReducer";
 import Popup from "../components/game/_GameOverPopup";
 import WonPopup from "../components/game/_GameWonPopup";
+import { Link } from "react-router-dom";
 
 interface CardType {
     src: string;
@@ -65,9 +66,10 @@ const Game: React.FC = () => {
     console.log(diffuse, 'diffuse')
     console.log(cards)
     return (
-        <div className="game-bg flex flex-col gap-5 bg-orange-900" >
+        <div className="full-height-bg h-full flex flex-col gap-5 " >
             <h1 className="text-center text-2xl pt-10 text-white">Exploding Kittens</h1>
-            <button onClick={() => dispatch(shuffleCards())} className="">New Game</button>
+            <button onClick={() => dispatch(shuffleCards())} className="font-semibold">New Game</button>
+            <button  className="font-semibold"><Link to="/app">Main Menu  </Link>  </button>
             <div className="card-grid">
                 {cards.map((card) => (
                     <div key={card.id}>

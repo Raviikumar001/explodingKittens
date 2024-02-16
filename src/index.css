@@ -8,7 +8,10 @@
   margin: 0;
   padding: 0;
 }
-
+html, body {
+  height: 100%; 
+  margin: 0; /* Reset default browser margins */
+}
 
 @layer components {
   .home-body {
@@ -64,4 +67,9 @@
 .flipped .back{
     transform: rotateY(90deg);
     transition-delay: 0s;
+}
+
+.full-height-bg {
+  background-color: #2D9596;
+  min-height: 100vh;
 }
