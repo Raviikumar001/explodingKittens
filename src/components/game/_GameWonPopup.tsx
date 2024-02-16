@@ -20,7 +20,7 @@ const WonPopup: React.FC<Close> = ({ onClose }) => {
   const token = storedToken ? storedToken.replace(/"/g, '') : ''; // Remove double quotes from token
   
   const upDateResults = async () => {
-    console.log(token);
+
     try {
       const response = await axios.patch(
         `${import.meta.env.VITE_API_BASE_URL}/api/v1/update-game-result`,
@@ -34,7 +34,7 @@ const WonPopup: React.FC<Close> = ({ onClose }) => {
           },
         }
       );
-      console.log(response);
+
     } catch (error: unknown) {
       const err = error as AxiosError<{ msg: string }>;
       console.log(err);

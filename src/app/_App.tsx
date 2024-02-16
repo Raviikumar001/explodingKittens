@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 const MainApp = () => {
   const user = useSelector((state: RootState) => state.auth.user);
   // const token  = useSelector( (state: RootState) => state.auth.token);
-  console.log(user);
+
   let navigate = useNavigate();
   const QuitGame = () => {
     localStorage.removeItem("user");

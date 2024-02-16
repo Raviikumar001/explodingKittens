@@ -12,7 +12,7 @@ const Leaderboard: React.FC = () => {
   const [totalGamesLost, setTotalGamesLost] = useState(0);
 
   const fetchResults = async () => {
-    console.log(token);
+
     try {
       const response = await axios.get(
         `${import.meta.env.VITE_API_BASE_URL}/api/v1/get-result?id=${user?.ID}`,
@@ -23,7 +23,7 @@ const Leaderboard: React.FC = () => {
           },
         }
       );
-      console.log(response);
+
       if (response) {
         const user = await JSON.parse(response.data?.user);
         setTotalGamesWon(user.total_points);

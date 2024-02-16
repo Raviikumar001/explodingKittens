@@ -26,7 +26,7 @@ const store = configureStore({
 });
 
 export type AppDispatch = typeof store.dispatch;
-export type AppState = RootState; // Assuming your RootState combines your 'AuthState'
+export type AppState = RootState; 
 
 export default store;
 

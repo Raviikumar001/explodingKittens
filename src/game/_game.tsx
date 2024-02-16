@@ -33,7 +33,7 @@ const Game: React.FC = () => {
   
 
     const handleChoice = (card: CardType) => {
-        console.log(card)
+
         if (card.id !== undefined) {
             dispatch(flipCard(card.id));
         } // Dispatching action to flip the card
@@ -62,9 +62,7 @@ const Game: React.FC = () => {
     useEffect(()=> {
         dispatch(shuffleCards())
     }, [])
-  
-    console.log(diffuse, 'diffuse')
-    console.log(cards)
+
     return (
         <div className="full-height-bg h-full flex flex-col gap-5 " >
             <h1 className="text-center text-2xl pt-10 text-white">Exploding Kittens</h1>

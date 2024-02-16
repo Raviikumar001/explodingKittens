@@ -25,14 +25,13 @@ const AccountForm: React.FC = () => {
 
     try {
       dispatch(dispatchAction())
-      console.log(Varient);
-      console.log(authApi , "auth")
+
       const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}${authApi}`,{
         name : name,
         userName: userName
       })
 
-      console.log(response);
+
       if(response)
       {   
          if (Varient === 'REGISTER'){
