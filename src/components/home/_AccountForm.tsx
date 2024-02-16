@@ -37,13 +37,14 @@ const AccountForm: React.FC = () => {
       {   
          if (Varient === 'REGISTER'){
           const user = await JSON.parse(response.data?.user);
-          const token = response.data?.token;
+          const token = response.data?.token.replace(/"/g, '');
           dispatch(registerSuccess({user,token}))
           navigate('/app');
          }else if(Varient == 'LOGIN')
          {
           const user = await JSON.parse(response.data?.user);
-          const token = response.data?.token;
+          const token = response.data?.token.replace(/"/g, '');
+      
           dispatch(loginSuccess({user,token}))
           navigate('/app');
          }
@@ -172,6 +173,7 @@ const AccountForm: React.FC = () => {
                     sm:leading-6"
             />
             {error}
+            <p>Dummy username: mike</p>
             <button
               className=" flex
                     justify-center

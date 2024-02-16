@@ -65,7 +65,10 @@ const MainApp = () => {
           text-2xl
           "
           >
+            <Link to="/app/leaderboard" >
             Leader Board
+            
+            </Link>
           </button>
           <button
             className="text-center w-full

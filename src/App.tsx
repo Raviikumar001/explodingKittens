@@ -6,6 +6,7 @@ import MainApp from './app/_App'
 import ProtectedRoute from './components/_ProtectedRoutes'
 import Game from './game/_game'
 import Instructions from './app/_Instructions';
+import Leaderboard from './app/_LeaderBoard';
 function App() {
 
   return (
@@ -17,6 +18,7 @@ function App() {
     <Route element={<ProtectedRoute />}> 
         <Route path='/app' element={<MainApp />} />
         <Route path='/game' element={<Game />} />
+        <Route path='/app/leaderboard' element ={<Leaderboard />} />
         <Route path='/app/instructons' element={<Instructions />} / >
       </Route>
     </Routes>
