@@ -20,13 +20,13 @@
   }
 
   .game-bg{
-    @apply   bg-gradient-to-r from-gray-500 to-stone-600;
+    @apply   h-full max-h-full bg-gradient-to-r from-gray-500 to-stone-600;
   }
  
 }
 
 .card-grid{
-    margin-top: 40px;
+    margin-top: 20px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-gap: 20px;
@@ -34,6 +34,7 @@
 
 .card {
     position: relative;
+    margin: 10px;
 }
 
 .card img {
@@ -41,4 +42,26 @@
     display: block;
     border: 2px solid #fff;
     border-radius: 6px;
+}
+
+.card .front{
+    transform: rotateY(90deg);
+    transition: all ease-in 0.2s;
+    position: absolute;
+}
+
+.flipped .front{
+    transform: rotateY(0deg);
+    transition: all ease-in 0.2s;
+}
+
+
+.card .back {
+    transition: all ease-in 0.2s;
+    transition-delay: 0.2s;
+}
+
+.flipped .back{
+    transform: rotateY(90deg);
+    transition-delay: 0s;
 }

@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { RootState } from './Types';  
 import authReducer ,{initialState} from './reducers/authReducer';
-
+import gameReducer  from './reducers/gameReducer';
 
 
 
@@ -21,6 +21,7 @@ if(token)
 const store = configureStore({
   reducer: {
     auth: authReducer,
+    game: gameReducer,
   },
 });
 

@@ -1,3 +1,4 @@
+import { GameState } from "./reducers/gameReducer";
 
 export interface AuthState {
     user: User | null; // Replace 'User' with your actual user data type
@@ -17,5 +18,6 @@ export interface AuthState {
 
 
   export type RootState = {
-    auth: AuthState
-  }
+    auth: AuthState;
+    game: GameState; // Include the game slice in RootState
+}
