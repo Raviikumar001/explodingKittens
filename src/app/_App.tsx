@@ -13,6 +13,9 @@ const MainApp = () => {
     navigate("/");
   };
 
+  
+
+
   return (
     <div className="h-screen app-bg ">
       <div

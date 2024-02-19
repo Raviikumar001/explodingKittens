@@ -5,7 +5,7 @@ import { loginStart, loginSuccess,removeError, registerFailure, registerStart, r
 import { useNavigate } from "react-router-dom";
 import { RootState } from "../../Types";
 import axios, { AxiosError } from "axios";
-
+import LoadingComponent from "./_LoadingComponent";
 type Varient = "LOGIN" | "REGISTER";
 
 const AccountForm: React.FC = () => {
@@ -15,7 +15,7 @@ const AccountForm: React.FC = () => {
   let navigate = useNavigate();
 
   const dispatch = useDispatch(); 
-  const { error } = useSelector((state: RootState) => state.auth);
+  const { error,isLoading } = useSelector((state: RootState) => state.auth);
   // const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -175,6 +175,7 @@ const AccountForm: React.FC = () => {
             />
             {error}
             <p>Dummy username: mike</p>
+            {isLoading && <LoadingComponent />}
             <button
               className=" flex
                     justify-center
@@ -188,9 +189,9 @@ const AccountForm: React.FC = () => {
                     focus-visible:outline
                     focus-visible:outline-2
                     focus-visible:outline-offset-2
-                    disabled:bg-gray-300
+                    disabled:bg-gray-200
                     "
-              
+                disabled={isLoading}
               // fullwidth
               type="submit"
             >
